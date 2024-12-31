@@ -104,7 +104,6 @@ class VectorQuantizer2(nn.Module):
                 if si < len(self.v_patch_nums) - 1:
                     h_BChw = F.interpolate(h_BChw, size=(H, W), mode='bicubic')
                 h_BChw = self.quant_resi[si/(SN-1)](h_BChw)
-                # print('si pn h_BChw------------------',si,pn,h_BChw.shape)
                 f_hat.add_(h_BChw)
                 if last_one: ls_f_hat_BChw = f_hat
                 else: ls_f_hat_BChw.append(f_hat.clone())
@@ -157,7 +156,7 @@ class VectorQuantizer2(nn.Module):
         f_hat_or_idx_Bl: List[torch.Tensor] = []
         
         patch_hws = [(pn, pn) if isinstance(pn, int) else (pn[0], pn[1]) for pn in (v_patch_nums or self.v_patch_nums)]    # from small to large
-        # assert patch_hws[-1][0] == H and patch_hws[-1][1] == W, f'{patch_hws[-1]=} != ({H=}, {W=})'
+        assert patch_hws[-1][0] == H and patch_hws[-1][1] == W, f'{patch_hws[-1]=} != ({H=}, {W=})'
         
         SN = len(patch_hws)
         for si, (ph, pw) in enumerate(patch_hws): # from small to large
@@ -178,7 +177,6 @@ class VectorQuantizer2(nn.Module):
             f_hat.add_(h_BChw)
             f_rest.sub_(h_BChw)
             f_hat_or_idx_Bl.append(f_hat.clone() if to_fhat else idx_N.reshape(B, ph*pw))
-            # print('ph*pw=============================',ph*pw)
         
         return f_hat_or_idx_Bl
     
@@ -194,15 +192,12 @@ class VectorQuantizer2(nn.Module):
         first_h_BChw = None
         for si in range(SN-1):
             if self.prog_si == 0 or (0 <= self.prog_si-1 < si): break   # progressive training: not supported yet, prog_si always -1
-            # print('gt_ms_idx_Bl[si]=======================',gt_ms_idx_Bl[si],si)
-            # print('self.embedding=======================',self.embedding(gt_ms_idx_Bl[si]).transpose_(1, 2).view(B, C, pn_next, pn_next))
             h_BChw = F.interpolate(self.embedding(gt_ms_idx_Bl[si]).transpose_(1, 2).view(B, C, pn_next, pn_next), size=(H, W), mode='bicubic')
             if si == 0:
                 first_h_BChw = h_BChw
             f_hat.add_(self.quant_resi[si/(SN-1)](h_BChw))
             pn_next = self.v_patch_nums[si+1]
             next_scales.append(F.interpolate(f_hat, size=(pn_next, pn_next), mode='area').view(B, C, -1).transpose(1, 2))
-            # print('pn_next==============================',pn_next,h_BChw.shape,si/(SN-1),si,SN-1)
         
         h_BChw = F.interpolate(self.embedding(gt_ms_idx_Bl[SN-1]).transpose_(1, 2).view(B, C, pn_next, pn_next), size=(H, W), mode='bicubic')
         f_hat.add_(self.quant_resi[SN-1/(SN-1)](h_BChw)) 

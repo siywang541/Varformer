@@ -46,7 +46,7 @@ def parse_options(root_path, is_train=True):
     # random seed
     seed = opt.get('manual_seed')
     if seed is None:
-        seed = 3407 #random.randint(1, 10000)
+        seed = random.randint(1, 10000)
         opt['manual_seed'] = seed
     set_random_seed(seed + opt['rank'])
     # seed

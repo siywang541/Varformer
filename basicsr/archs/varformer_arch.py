@@ -1570,7 +1570,7 @@ class VarCodeFormer8(VarVQAutoEncoder2):
         self.connect_list = connect_list
         
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -2153,7 +2153,7 @@ class VarCodeFormer10(VarVQAutoEncoder2):
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -2387,7 +2387,7 @@ class VarCodeFormer10(VarVQAutoEncoder2):
 
 
 @ARCH_REGISTRY.register()
-class VarCodeFormer11(VarVQAutoEncoder2): # VarCodeFormer14_2_2_2_2上var减少force层数
+class VarCodeFormer11(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
                 vqgan_path=None,
@@ -2454,7 +2454,7 @@ class VarCodeFormer11(VarVQAutoEncoder2): # VarCodeFormer14_2_2_2_2上var减少f
         self.connect_list = connect_list
         
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -2759,7 +2759,7 @@ class VarCodeFormer12(VarVQAutoEncoder2):
         self.connect_list = connect_list
         
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -3066,7 +3066,7 @@ class VarCodeFormer13(VarVQAutoEncoder2):
         self.connect_list = connect_list
         
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -3377,7 +3377,7 @@ class VarFormer14(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_2):
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #
         
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
@@ -3712,7 +3712,7 @@ class VarFormer15(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2):
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
@@ -4060,7 +4060,7 @@ class VarFormer16(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj):
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
@@ -4387,7 +4387,7 @@ class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
 
@@ -4562,7 +4562,7 @@ class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
 
         logits_BlV_all = None
         idx_Bl_all = []
-        for si, pn in enumerate(self.patch_nums):   # si: i-th segment
+        for si, pn in enumerate(self.patch_nums):   
 
             ratio = si / self.num_stages_minus_1
             cur_L += pn*pn
@@ -4706,7 +4706,7 @@ class VarFormer18(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
 
@@ -5014,7 +5014,7 @@ class VarFormer19(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_pat
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         #  # after first residual block for > 16, before attn layer for ==16
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}

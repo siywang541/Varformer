@@ -21,6 +21,7 @@ ITen = torch.LongTensor
 class VarCodeFormer2(VarVQAutoEncoder):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -239,7 +240,6 @@ class VarCodeFormer2(VarVQAutoEncoder):
                 next_token_map = self.word_embed(next_token_map) + lvl_pos[:, cur_L:cur_L + self.patch_nums[si+1] ** 2]
                 
                 # next_token_map = next_token_map2*(1-k) + next_token_map*k
-                print('next_token_map2======================',next_token_map2.shape)
                 next_token_map = self.cat_linear(torch.cat([next_token_map2, next_token_map],2))
                 
 
@@ -266,6 +266,7 @@ from archs.var_vqgan_arch import MainDecoder, MainDecoder9
 class VarCodeFormer3(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -310,7 +311,7 @@ class VarCodeFormer3(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             
         )
@@ -516,6 +517,7 @@ class VarCodeFormer3(VarVQAutoEncoder2):
 class VarCodeFormer4(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -560,7 +562,7 @@ class VarCodeFormer4(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             
         )
@@ -762,6 +764,7 @@ class VarCodeFormer4(VarVQAutoEncoder2):
 class VarCodeFormer5(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -806,7 +809,7 @@ class VarCodeFormer5(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             
         )
@@ -1010,6 +1013,7 @@ class VarCodeFormer5(VarVQAutoEncoder2):
 class VarCodeFormer6(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -1054,7 +1058,7 @@ class VarCodeFormer6(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             
         )
@@ -1257,6 +1261,7 @@ class VarCodeFormer6(VarVQAutoEncoder2):
 class VarCodeFormer7(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -1301,7 +1306,7 @@ class VarCodeFormer7(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             
         )
@@ -1509,6 +1514,7 @@ from archs.var_vqgan_arch import MainDecoder, MainDecoder2
 class VarCodeFormer8(VarVQAutoEncoder2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -1554,7 +1560,7 @@ class VarCodeFormer8(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
             
@@ -1779,6 +1785,7 @@ from archs.RAC import RcaMoudle
 class VarCodeFormer9(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -1824,7 +1831,7 @@ class VarCodeFormer9(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,
             connect_list = connect_list, # from vq-f16/config.yaml above
             
@@ -1843,7 +1850,7 @@ class VarCodeFormer9(VarVQAutoEncoder2):
         self.connect_list = connect_list
         
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #{'512':2, '256':5, '128':8, '64':11, '32':14, '16':18}
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'32': 4, '64':3, '128':2, '256':1}
@@ -2082,6 +2089,7 @@ from archs.AIEM import EnhanceLayers
 class VarCodeFormer10(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -2134,7 +2142,7 @@ class VarCodeFormer10(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,
             connect_list = connect_list, # from vq-f16/config.yaml above
             
@@ -2390,6 +2398,7 @@ class VarCodeFormer10(VarVQAutoEncoder2):
 class VarCodeFormer11(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -2435,7 +2444,7 @@ class VarCodeFormer11(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,
             connect_list = connect_list, # from vq-f16/config.yaml above
             
@@ -2691,6 +2700,7 @@ class VarCodeFormer11(VarVQAutoEncoder2):
 class VarCodeFormer12(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -2740,7 +2750,7 @@ class VarCodeFormer12(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,
             connect_list = connect_list, # from vq-f16/config.yaml above
             
@@ -2998,6 +3008,7 @@ class VarCodeFormer12(VarVQAutoEncoder2):
 class VarCodeFormer13(VarVQAutoEncoder2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -3047,7 +3058,7 @@ class VarCodeFormer13(VarVQAutoEncoder2):
         # main decoder
         ddconfig = dict(
             dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=3,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=3,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,
             connect_list = connect_list, # from vq-f16/config.yaml above
             
@@ -3305,6 +3316,7 @@ class VarCodeFormer13(VarVQAutoEncoder2):
 class VarFormer14(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_2): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -3360,7 +3372,7 @@ class VarFormer14(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_2):
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,s=s,k_s=k_s,
             
@@ -3377,7 +3389,7 @@ class VarFormer14(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_2):
         self.connect_list = connect_list
 
         # # after second residual block for > 16, before attn layer for ==16
-        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} #
+        self.fuse_encoder_block = {'128':0, '64':1, '32':2, '16':3} 
         
 
         self.fuse_generator_block = {'16': 4, '32':3, '64':2, '128':1}
@@ -3640,6 +3652,7 @@ class VarFormer14(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_2):
 class VarFormer15(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2):
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -3695,7 +3708,7 @@ class VarFormer15(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2):
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
             
@@ -3988,6 +4001,7 @@ class VarFormer15(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2):
 class VarFormer16(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -4043,7 +4057,7 @@ class VarFormer16(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj):
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
             
@@ -4321,6 +4335,7 @@ class VarFormer16(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj):
 class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_down_1): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -4374,7 +4389,7 @@ class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
         )
@@ -4562,7 +4577,7 @@ class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
 
         logits_BlV_all = None
         idx_Bl_all = []
-        for si, pn in enumerate(self.patch_nums):   
+        for si, pn in enumerate(self.patch_nums):   # si: i-th segment
 
             ratio = si / self.num_stages_minus_1
             cur_L += pn*pn
@@ -4642,6 +4657,7 @@ class VarFormer17(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
 class VarFormer18(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_down_1): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -4694,7 +4710,7 @@ class VarFormer18(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
         )
@@ -4946,6 +4962,7 @@ class VarFormer18(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_dow
 class VarFormer19(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_patial_gres): 
     def __init__(self, 
                 fix_modules=['quantize','decoder','post_quant_conv'], 
+                ch_mult=None,
                 vqgan_path=None,
                 var_path=None,
                 model_path=None,
@@ -5000,7 +5017,7 @@ class VarFormer19(VarVQAutoEncoder2__norm_noDecoder_2encoder2_varformer2_kzj_pat
         # main decoder
         ddconfig = dict(
            dropout=0.0, ch=160, z_channels=32,
-            in_channels=3, ch_mult=(1, 1, 2, 2, 4), num_res_blocks=2,   # from vq-f16/config.yaml above
+            in_channels=3, ch_mult=ch_mult, num_res_blocks=2,   # from vq-f16/config.yaml above
             using_sa=True, using_mid_sa=True,                           # from vq-f16/config.yaml above
             connect_list = connect_list,
             resamp_with_conv=True,   # always True, removed.
